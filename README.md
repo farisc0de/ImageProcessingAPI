@@ -21,6 +21,25 @@ npm install && npm run dev
 http://localhost:3000/image?filename=image.jpg&width=150&height=150
 ```
 
+## How to test
+
+```
+npm run test
+```
+
+## How to build
+
+```
+npm run build
+```
+
+## Other scripts
+
+```
+npm run lint: Eslint
+npm run format: Format the code 
+```
+
 ## License
 
 MIT
