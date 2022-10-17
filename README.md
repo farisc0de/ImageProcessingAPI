@@ -13,6 +13,7 @@ npm install && npm run dev
 
 ## API Endpoint
 
+/      : main endpoint
 /image : take an image name and widht an height
 
 ## Simple Example
