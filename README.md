@@ -20,3 +20,7 @@ npm install && npm run dev
 ```
 http://localhost:3000/image?filename=image.jpg&width=150&height=150
 ```
+
+## License
+
+MIT
