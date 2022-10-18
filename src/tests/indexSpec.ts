@@ -60,8 +60,6 @@ afterAll(async (): Promise<void> => {
     'fjord-199x199.jpg'
   )
 
-  try {
-    await fs.access(resizedImagePath)
-    fs.unlink(resizedImagePath)
-  } catch {}
+  await fs.access(resizedImagePath)
+  fs.unlink(resizedImagePath)
 })

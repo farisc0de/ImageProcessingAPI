@@ -27,7 +27,7 @@ export default class Image {
     }
   }
 
-  static async isImageExist(filename: string = ''): Promise<boolean> {
+  static async isImageExist(filename?: string): Promise<boolean> {
     if (!filename) {
       return false
     }
@@ -84,8 +84,6 @@ export default class Image {
       Image.imagesThumbPath,
       `${query.filename}-${query.width}x${query.height}.jpg`
     )
-
-    console.log(`Creating thumb ${filePathThumb}`)
 
     return await process(
       filePathFull,

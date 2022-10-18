@@ -8,7 +8,9 @@ const process = async (
 ): Promise<null | string> => {
   try {
     await sharp(source).resize(width, height).toFormat('jpg').toFile(dist)
-  } catch (error) {}
+  } catch (error) {
+    return 'Error: couldn not resize image'
+  }
   return null
 }
 

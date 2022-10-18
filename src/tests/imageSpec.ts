@@ -30,7 +30,7 @@ describe('Test image processing using sharp', (): void => {
 
     const resizedImagePath: string = path.resolve(
       Image.imagesThumbPath,
-      `icelandwaterfall-150x150.jpg`
+      'icelandwaterfall-150x150.jpg'
     )
     let errorimage: null | string = ''
 
@@ -51,8 +51,6 @@ afterAll(async (): Promise<void> => {
     'icelandwaterfall-150x150'
   )
 
-  try {
-    await fs.access(resizedImagePath)
-    fs.unlink(resizedImagePath)
-  } catch {}
+  await fs.access(resizedImagePath)
+  fs.unlink(resizedImagePath)
 })

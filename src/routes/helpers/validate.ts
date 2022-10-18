@@ -3,7 +3,7 @@ import pramters from './interface'
 
 const validate = async (query: pramters): Promise<null | string> => {
   if (!(await Image.isImageExist(query.filename))) {
-    return `Please enter a valid filename.`
+    return 'Please enter a valid filename.'
   }
 
   if (!query.width && !query.height) {
