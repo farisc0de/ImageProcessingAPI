@@ -36,10 +36,8 @@ npm run build
 
 ## Other scripts
 
-```
-npm run lint: Eslint
-npm run format: Format the code 
-```
+1. ``npm run lint``: Eslint
+2. ``npm run format``: Format the code 
 
 ## License
 
