@@ -13,8 +13,8 @@ npm install && npm run dev
 
 ## API Endpoint
 
-/      : main endpoint
-/images : take an image name and widht an height
+1. "/"       : main endpoint
+2. "/images" : take an image name and widht an height
 
 ## Simple Example
 
