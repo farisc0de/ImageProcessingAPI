@@ -8,7 +8,7 @@ const getImagePath = async (data: pramters): Promise<null | string> => {
   if (!data.filename) {
     return null
   }
-  const filePath: string =
+  const filepath: string =
     data.width && data.height
       ? path.resolve(
           foldersPaths.thumbpath,
@@ -16,9 +16,9 @@ const getImagePath = async (data: pramters): Promise<null | string> => {
         )
       : path.resolve(foldersPaths.fullpath, `${data.filename}.jpg`)
 
-  if (fs.existsSync(filePath)) {
-    await fss.access(filePath)
-    return filePath
+  if (fs.existsSync(filepath)) {
+    await fss.access(filepath)
+    return filepath
   }
 
   return null

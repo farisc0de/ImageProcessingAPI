@@ -9,13 +9,13 @@ const images: express.Router = express.Router()
 images.get(
   '/',
   async (req: express.Request, res: express.Response): Promise<void> => {
-    const validationMessage: null | string = await validate(req.query)
-    if (validationMessage) {
-      res.send(validationMessage)
+    const validatemessage: string | null = await validate(req.query)
+    if (validatemessage) {
+      res.send(validatemessage)
       return
     }
 
-    let error: null | string = ''
+    let error: string | null = ''
 
     if (!(await isThumbExist(req.query))) {
       error = await createThumb(req.query)
@@ -26,7 +26,7 @@ images.get(
       return
     }
 
-    const path: null | string = await getImagePath(req.query)
+    const path: string | null = await getImagePath(req.query)
     if (path) {
       res.sendFile(path)
     } else {

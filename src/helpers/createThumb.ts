@@ -14,9 +14,7 @@ const createThumb = async (data: pramters): Promise<null | string> => {
   )
 
   const filename = `${data.filename}-${data.width}x${data.height}.jpg`
-
   const thumbpath: string = path.resolve(foldersPaths.fullpath, filename)
-
   const width: number = parseInt(data.width)
   const height: number = parseInt(data.height)
 

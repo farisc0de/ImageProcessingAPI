@@ -9,16 +9,16 @@ const isThumbExist = async (data: pramters): Promise<boolean> => {
     return false
   }
 
-  const filePath: string = path.resolve(
+  const filepath: string = path.resolve(
     foldersPaths.thumbpath,
     `${data.filename}-${data.width}x${data.height}.jpg`
   )
 
-  if (!fs.existsSync(filePath)) {
+  if (!fs.existsSync(filepath)) {
     return false
   }
 
-  await fss.access(filePath)
+  await fss.access(filepath)
   return true
 }
 
