@@ -1,10 +1,11 @@
 import { promises as fs } from 'fs'
 import path from 'path'
-import Image from '../image'
+import createThumb from '../helpers/createThumb'
+import foldersPaths from '../foldersPaths'
 
-describe('Test image processing using sharp', (): void => {
+describe('Test Image using sharp', (): void => {
   it('Error: invalid width', async (): Promise<void> => {
-    const error: null | string = await Image.createThumb({
+    const error: null | string = await createThumb({
       filename: 'foo',
       width: '-50',
       height: '250',
@@ -13,7 +14,7 @@ describe('Test image processing using sharp', (): void => {
   })
 
   it('Error: Image does not exist', async (): Promise<void> => {
-    const error: null | string = await Image.createThumb({
+    const error: null | string = await createThumb({
       filename: 'my_face',
       width: '100',
       height: '500',
@@ -22,14 +23,14 @@ describe('Test image processing using sharp', (): void => {
   })
 
   it('OK: Image resized', async (): Promise<void> => {
-    await Image.createThumb({
+    await createThumb({
       filename: 'icelandwaterfall',
       width: '150',
       height: '150',
     })
 
     const resizedImagePath: string = path.resolve(
-      Image.imagesThumbPath,
+      foldersPaths.fullpath,
       'icelandwaterfall-150x150.jpg'
     )
     let errorimage: null | string = ''
@@ -47,7 +48,7 @@ describe('Test image processing using sharp', (): void => {
 
 afterAll(async (): Promise<void> => {
   const resizedImagePath: string = path.resolve(
-    Image.imagesThumbPath,
+    foldersPaths.thumbpath,
     'icelandwaterfall-150x150'
   )
 

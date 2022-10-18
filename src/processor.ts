@@ -1,6 +1,6 @@
 import sharp from 'sharp'
 
-const process = async (
+const resizeImage = async (
   source: string,
   dist: string,
   width: number,
@@ -14,4 +14,4 @@ const process = async (
   return null
 }
 
-export default process
+export default resizeImage

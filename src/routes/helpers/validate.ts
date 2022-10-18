@@ -1,8 +1,8 @@
-import Image from '../../image'
 import pramters from './interface'
+import isImageExist from '../../helpers/isImageExist'
 
 const validate = async (query: pramters): Promise<null | string> => {
-  if (!(await Image.isImageExist(query.filename))) {
+  if (!(await isImageExist(query.filename))) {
     return 'Please enter a valid filename.'
   }
 

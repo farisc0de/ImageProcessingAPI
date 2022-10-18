@@ -1,5 +1,7 @@
 import express from 'express'
-import Image from '../image'
+import isThumbExist from '../helpers/isThumbExist'
+import createThumb from '../helpers/createThumb'
+import getImagePath from '../helpers/getImagePath'
 import validate from './helpers/validate'
 
 const images: express.Router = express.Router()
@@ -15,8 +17,8 @@ images.get(
 
     let error: null | string = ''
 
-    if (!(await Image.isThumbExist(req.query))) {
-      error = await Image.createThumb(req.query)
+    if (!(await isThumbExist(req.query))) {
+      error = await createThumb(req.query)
     }
 
     if (error) {
@@ -24,7 +26,7 @@ images.get(
       return
     }
 
-    const path: null | string = await Image.getImagePath(req.query)
+    const path: null | string = await getImagePath(req.query)
     if (path) {
       res.sendFile(path)
     } else {
