@@ -2,7 +2,7 @@ import express from 'express'
 import Image from './image'
 import routes from './routes/index'
 
-const app = express()
+const app: express.Application = express()
 
 app.use(routes)
 
