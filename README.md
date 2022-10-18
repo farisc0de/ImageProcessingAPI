@@ -37,7 +37,15 @@ npm run build
 ## Other scripts
 
 1. ``npm run lint``: Eslint
-2. ``npm run format``: Format the code 
+2. ``npm run format``: Format the code
+
+## Screenshots
+
+![](https://i.imgur.com/On60ivq.png)
+
+![](https://i.imgur.com/uTvMZnU.png)
+
+![](https://i.imgur.com/PJ4M94C.png)
 
 ## License
 
