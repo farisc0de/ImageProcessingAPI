@@ -14,12 +14,12 @@ npm install && npm run dev
 ## API Endpoint
 
 /      : main endpoint
-/image : take an image name and widht an height
+/images : take an image name and widht an height
 
 ## Simple Example
 
 ```
-http://localhost:3000/image?filename=image.jpg&width=150&height=150
+http://localhost:3000/images?filename=image.jpg&width=150&height=150
 ```
 
 ## How to test
