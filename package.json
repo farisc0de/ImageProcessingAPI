@@ -1,4 +1,6 @@
 {
+  "name": "imageprocessingapi",
+  "description": "Express API that resize images",
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
