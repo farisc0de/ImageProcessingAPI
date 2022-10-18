@@ -1,57 +1,56 @@
-import { promises as fs } from 'fs'
+import { promises as fss } from 'fs'
+import fs from 'fs'
 import path from 'path'
 import createThumb from '../helpers/createThumb'
 import foldersPaths from '../foldersPaths'
 
-describe('Test Image using sharp', (): void => {
-  it('Error: invalid width', async (): Promise<void> => {
-    const error: null | string = await createThumb({
-      filename: 'foo',
-      width: '-50',
-      height: '250',
-    })
-    expect(error).not.toBeNull()
+it('Error: invalid width', async (): Promise<void> => {
+  const error: string | null = await createThumb({
+    filename: 'foo',
+    width: '-50',
+    height: '250',
+  })
+  expect(error).not.toBeNull()
+})
+
+it('Error: Image does not exist', async (): Promise<void> => {
+  const error: string | null = await createThumb({
+    filename: 'my_face',
+    width: '100',
+    height: '500',
+  })
+  expect(error).not.toBeNull()
+})
+
+it('OK: Image resized', async (): Promise<void> => {
+  await createThumb({
+    filename: 'icelandwaterfall',
+    width: '150',
+    height: '150',
   })
 
-  it('Error: Image does not exist', async (): Promise<void> => {
-    const error: null | string = await createThumb({
-      filename: 'my_face',
-      width: '100',
-      height: '500',
-    })
-    expect(error).not.toBeNull()
-  })
+  const resizedImagePath: string = path.resolve(
+    foldersPaths.fullpath,
+    'icelandwaterfall-150x150.jpg'
+  )
+  let err: string | null = ''
 
-  it('OK: Image resized', async (): Promise<void> => {
-    await createThumb({
-      filename: 'icelandwaterfall',
-      width: '150',
-      height: '150',
-    })
+  if (fs.existsSync(resizedImagePath)) {
+    await fss.access(resizedImagePath)
+    err = null
+  } else {
+    err = 'Error: File not created'
+  }
 
-    const resizedImagePath: string = path.resolve(
-      foldersPaths.fullpath,
-      'icelandwaterfall-150x150.jpg'
-    )
-    let errorimage: null | string = ''
-
-    try {
-      await fs.access(resizedImagePath)
-      errorimage = null
-    } catch {
-      errorimage = 'File was not created'
-    }
-
-    expect(errorimage).toBeNull()
-  })
+  expect(err).toBeNull()
 })
 
 afterAll(async (): Promise<void> => {
-  const resizedImagePath: string = path.resolve(
+  const resizedimage: string = path.resolve(
     foldersPaths.thumbpath,
     'icelandwaterfall-150x150'
   )
 
-  await fs.access(resizedImagePath)
-  fs.unlink(resizedImagePath)
+  await fss.access(resizedimage)
+  fss.unlink(resizedimage)
 })

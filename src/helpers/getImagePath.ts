@@ -1,6 +1,7 @@
 import pramters from '../routes/helpers/interface'
 import path from 'path'
-import { promises as fs } from 'fs'
+import { promises as fss } from 'fs'
+import fs from 'fs'
 import foldersPaths from '../foldersPaths'
 
 const getImagePath = async (data: pramters): Promise<null | string> => {
@@ -15,12 +16,12 @@ const getImagePath = async (data: pramters): Promise<null | string> => {
         )
       : path.resolve(foldersPaths.fullpath, `${data.filename}.jpg`)
 
-  try {
-    await fs.access(filePath)
+  if (fs.existsSync(filePath)) {
+    await fss.access(filePath)
     return filePath
-  } catch {
-    return null
   }
+
+  return null
 }
 
 export default getImagePath
