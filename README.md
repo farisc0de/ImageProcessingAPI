@@ -1,5 +1,5 @@
 # ImageProcessingAPI
-Part of my Full Stack Development Nanodegree
+Express API that resize image to a specific hight and width
 
 ## About Project
 
