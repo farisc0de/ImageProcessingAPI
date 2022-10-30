@@ -9,21 +9,15 @@ const images: express.Router = express.Router()
 images.get(
   '/',
   async (req: express.Request, res: express.Response): Promise<void> => {
-    const validatemessage: string | null = await validate(req.query)
-
-    if (validatemessage) {
-      res.send(validatemessage)
+    if (await validate(req.query)) {
+      res.send(await validate(req.query))
       return
     }
 
-    let error: boolean | null = false
+    await createThumb(req.query)
 
     if (!(await isThumbExist(req.query))) {
-      error = await createThumb(req.query)
-    }
-
-    if (error) {
-      res.send(error)
+      res.send('Error: Failed to create a file !')
       return
     }
 
@@ -35,6 +29,8 @@ images.get(
     }
 
     res.sendFile(path)
+
+    return
   }
 )
 
