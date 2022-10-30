@@ -1,4 +1,4 @@
-import pramters from '../routes/helpers/interface'
+import pramters from '../routes/helpers/paramters'
 import path from 'path'
 import { promises as fss } from 'fs'
 import foldersPaths from '../foldersPaths'

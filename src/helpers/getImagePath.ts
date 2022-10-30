@@ -1,4 +1,4 @@
-import pramters from '../routes/helpers/interface'
+import pramters from '../routes/helpers/paramters'
 import path from 'path'
 import { promises as fss } from 'fs'
 import fs from 'fs'
@@ -8,6 +8,7 @@ const getImagePath = async (data: pramters): Promise<null | string> => {
   if (!data.filename) {
     return null
   }
+
   const filepath: string =
     data.width && data.height
       ? path.resolve(

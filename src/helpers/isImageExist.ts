@@ -1,11 +1,11 @@
-import getAll from './getAll'
+import fileExist from './fileExist'
 
-const isImageExist = async (filename?: string): Promise<boolean> => {
+const isImageExist = (filename?: string): boolean => {
   if (!filename) {
     return false
   }
 
-  return (await getAll()).includes(filename)
+  return fileExist(filename)
 }
 
 export default isImageExist

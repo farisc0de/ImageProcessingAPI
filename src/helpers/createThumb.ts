@@ -1,9 +1,9 @@
-import pramters from '../routes/helpers/interface'
+import pramters from '../routes/helpers/paramters'
 import sharp from 'sharp'
 import path from 'path'
 import foldersPaths from '../foldersPaths'
 
-const createThumb = async (data: pramters): Promise<null | string> => {
+const createThumb = async (data: pramters): Promise<null | boolean> => {
   if (!data.filename || !data.width || !data.height) {
     return null
   }
@@ -13,14 +13,15 @@ const createThumb = async (data: pramters): Promise<null | string> => {
     `${data.filename}.jpg`
   )
 
-  const filename = `${data.filename}-${data.width}x${data.height}.jpg`
-  const thumbpath: string = path.resolve(foldersPaths.fullpath, filename)
-  const width: number = parseInt(data.width)
-  const height: number = parseInt(data.height)
+  const filename: string = `${data.filename}-${data.width}x${data.height}.jpg`
+  const thumbpath: string = path.resolve(foldersPaths.thumbpath, filename)
 
-  await sharp(fullpath).resize(width, height).toFormat('jpg').toFile(thumbpath)
+  await sharp(fullpath)
+    .resize(parseInt(data.width), parseInt(data.height))
+    .toFormat('jpg')
+    .toFile(thumbpath)
 
-  return 'true'
+  return true
 }
 
 export default createThumb

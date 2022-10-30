@@ -10,12 +10,13 @@ images.get(
   '/',
   async (req: express.Request, res: express.Response): Promise<void> => {
     const validatemessage: string | null = await validate(req.query)
+
     if (validatemessage) {
       res.send(validatemessage)
       return
     }
 
-    let error: string | null = ''
+    let error: boolean | null = false
 
     if (!(await isThumbExist(req.query))) {
       error = await createThumb(req.query)
@@ -27,11 +28,13 @@ images.get(
     }
 
     const path: string | null = await getImagePath(req.query)
-    if (path) {
-      res.sendFile(path)
-    } else {
+
+    if (!path) {
       res.send('Error: Please try again')
+      return
     }
+
+    res.sendFile(path)
   }
 )
 
