@@ -14,6 +14,14 @@ images.get(
       return
     }
 
+    if (await isThumbExist(req.query)) {
+      const path: string | null = await getImagePath(req.query)
+      if (path) {
+        res.sendFile(path)
+        return
+      }
+    }
+
     await createThumb(req.query)
 
     if (!(await isThumbExist(req.query))) {

@@ -1,4 +1,3 @@
-import { promises as fss } from 'fs'
 import fs from 'fs'
 import path from 'path'
 import createThumb from '../helpers/createThumb'
@@ -31,11 +30,11 @@ it('OK: Image resized', async (): Promise<void> => {
     height: '150',
   })
 
-  let err: string | null = ''
+  let err: string | null = null
 
   if (
     !fs.existsSync(
-      path.resolve(foldersPaths.fullpath, 'icelandwaterfall-150x150.jpg')
+      path.resolve(foldersPaths.thumbpath, 'icelandwaterfall_150_150.jpg')
     )
   ) {
     err = 'Error: File not created'

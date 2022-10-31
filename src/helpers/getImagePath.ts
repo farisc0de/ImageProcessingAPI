@@ -13,7 +13,7 @@ const getImagePath = async (data: pramters): Promise<null | string> => {
     data.width && data.height
       ? path.resolve(
           foldersPaths.thumbpath,
-          `${data.filename}-${data.width}x${data.height}.jpg`
+          `${data.filename}_${data.width}_${data.height}.jpg`
         )
       : path.resolve(foldersPaths.fullpath, `${data.filename}.jpg`)
 

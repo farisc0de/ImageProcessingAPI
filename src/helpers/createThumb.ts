@@ -2,6 +2,7 @@ import pramters from '../routes/helpers/paramters'
 import sharp from 'sharp'
 import path from 'path'
 import foldersPaths from '../foldersPaths'
+import fs from 'fs'
 
 const createThumb = async (data: pramters): Promise<null | boolean> => {
   if (!data.filename || !data.width || !data.height) {
@@ -13,7 +14,11 @@ const createThumb = async (data: pramters): Promise<null | boolean> => {
     `${data.filename}.jpg`
   )
 
-  const filename: string = `${data.filename}-${data.width}x${data.height}.jpg`
+  if (!fs.existsSync(fullpath)) {
+    return false
+  }
+
+  const filename: string = `${data.filename}_${data.width}_${data.height}.jpg`
   const thumbpath: string = path.resolve(foldersPaths.thumbpath, filename)
 
   await sharp(fullpath)
